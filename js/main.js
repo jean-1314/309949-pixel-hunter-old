@@ -26,11 +26,16 @@ const showScreen = (newScreen, oldScreen) => {
 showScreen(greetingScreen, introScreen);
 
 document.addEventListener(`keydown`, function (evt) {
+  let i = 1;
   if (evt.altKey && evt.keyCode === ARROWS.right) {
     let currentScreen = mainScreen.childNodes[0];
-    for (let i = 0; i < screens.length; i++) {
-      showScreen(screens[i + 1], currentScreen);
-      console.log(screens[i]);
-    }
+    showScreen(screens[i + 1], currentScreen);
+    i++;
+  }
+
+  if (evt.altKey && evt.keyCode === ARROWS.left) {
+    let currentScreen = mainScreen.childNodes[0];
+    showScreen(screens[i], currentScreen);
+    i--;
   }
 });
