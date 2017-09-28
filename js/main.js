@@ -17,11 +17,6 @@ const mainScreen = document.querySelector(`.central`);
 
 const screens = [greetingScreen, rulesScreen, firstGameScreen, secondGameScreen, thirdGameScreen, statsScreen];
 
-/**
- * find div element from temlate
- * @param {*} data template content
- * @return NodeElement
- */
 const getTemplate = (data) => {
   return [].filter.call(data.childNodes, (node) => {
     return node.tagName === `DIV`;
