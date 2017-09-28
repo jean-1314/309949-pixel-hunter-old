@@ -1,41 +1,66 @@
 `use strict`;
 
-const ARROWS = {
-  left: 37,
-  right: 39
+const Arrows = {
+  LEFT: 37,
+  RIGHT: 39
 };
 
-const introScreen = document.querySelector(`#intro`);
+// const introScreen = document.querySelector(`#intro`);
 const greetingScreen = document.querySelector(`#greeting`);
 const rulesScreen = document.querySelector(`#rules`);
 const firstGameScreen = document.querySelector(`#game-1`);
 const secondGameScreen = document.querySelector(`#game-2`);
 const thirdGameScreen = document.querySelector(`#game-3`);
 const statsScreen = document.querySelector(`#stats`);
+const main = document.querySelector(`#main`);
+const mainScreen = document.querySelector(`.central`);
 
-const mainScreen = document.querySelector(`#main`);
+const screens = [greetingScreen, rulesScreen, firstGameScreen, secondGameScreen, thirdGameScreen, statsScreen];
 
-const screens = [introScreen, greetingScreen, rulesScreen, firstGameScreen, secondGameScreen, thirdGameScreen, statsScreen];
+/**
+ * find div element from temlate
+ * @param {*} data template content
+ * @return NodeElement
+ */
+const getTemplate = (data) => {
+  return [].filter.call(data.childNodes, (node) => {
+    return node.tagName === `DIV`;
+  });
+};
 
 const showScreen = (newScreen, oldScreen) => {
   let template = newScreen;
-  let templateContent = template.content;
-  mainScreen.replaceChild(templateContent, oldScreen);
+  const clone = template.cloneNode(true);
+  const templateContent = getTemplate(clone.content);
+  mainScreen.replaceChild(templateContent[0], oldScreen);
 };
 
-showScreen(greetingScreen, introScreen);
+showScreen(greetingScreen, main);
+
+let i = 1;
 
 document.addEventListener(`keydown`, function (evt) {
-  let i = 1;
-  if (evt.altKey && evt.keyCode === ARROWS.right) {
-    let currentScreen = mainScreen.childNodes[0];
-    showScreen(screens[i + 1], currentScreen);
+  const count = screens.length;
+  const currentScreen = getTemplate(mainScreen);
+
+  if (i === 0) {
     i++;
   }
 
-  if (evt.altKey && evt.keyCode === ARROWS.left) {
-    let currentScreen = mainScreen.childNodes[0];
-    showScreen(screens[i], currentScreen);
+  if (evt.altKey && evt.keyCode === Arrows.RIGHT) {
+    if (count !== i) {
+      showScreen(screens[i], currentScreen[0]);
+      i++;
+    }
+  }
+
+  if (evt.altKey && evt.keyCode === Arrows.LEFT) {
     i--;
+    if (i >= 0 && i <= count) {
+      if (i === 0) {
+        i = 1;
+      }
+      showScreen(screens[i - 1], currentScreen[0]);
+    }
   }
 });
