@@ -1,5 +1,3 @@
-`use strict`;
-
 const Arrows = {
   LEFT: 37,
   RIGHT: 39
