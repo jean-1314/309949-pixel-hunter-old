@@ -3,3 +3,5 @@ const getElementFromTemplate = (string) => {
   newDiv.innerHTML = string;
   return newDiv;
 };
+
+export {getElementFromTemplate};
