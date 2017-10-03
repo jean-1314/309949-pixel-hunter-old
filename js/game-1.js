@@ -1,4 +1,4 @@
-import getElementFromTemplate from './get-element.js';
+import {getElementFromTemplate} from './get-element.js';
 
 const gameOne = getElementFromTemplate(
     `
