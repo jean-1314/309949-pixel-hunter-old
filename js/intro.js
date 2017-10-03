@@ -1,5 +1,9 @@
+import {getElementFromTemplate} from './get-element.js';
+import {showScreen} from './show-screen.js';
+import greetings from './greetings.js';
+
 const intro = getElementFromTemplate(
-  `
+    `
   <div id="intro" class="intro">
     <h1 class="intro__asterisk">*</h1>
     <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
@@ -16,5 +20,14 @@ const intro = getElementFromTemplate(
   </footer>
   `
 );
+
+window.onload = () => {
+  const introAsterisk = document.querySelector(`.intro__asterisk`);
+  if (introAsterisk) {
+    introAsterisk.addEventListener(`click`, function () {
+      showScreen(greetings);
+    });
+  }
+};
 
 export default intro;

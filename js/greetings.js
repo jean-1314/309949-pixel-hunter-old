@@ -1,5 +1,9 @@
+import {getElementFromTemplate} from './get-element.js';
+import {showScreen} from './show-screen.js';
+import rules from './rules.js';
+
 const greetings = getElementFromTemplate(
-  `
+    `
   <div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
     <h1 class="greeting__asterisk">*</h1>
@@ -25,5 +29,14 @@ const greetings = getElementFromTemplate(
   </footer>
   `
 );
+
+window.onload = () => {
+  const next = document.querySelector(`.greeting__continue`);
+  if (next) {
+    next.addEventListener(`click`, function () {
+      showScreen(rules);
+    });
+  }
+};
 
 export default greetings;

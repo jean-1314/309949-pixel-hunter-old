@@ -1,3 +1,6 @@
+import {showScreen} from './show-screen.js';
+import intro from './intro.js';
+
 // const Arrows = {
 //   LEFT: 37,
 //   RIGHT: 39
@@ -11,7 +14,7 @@
 // const thirdGameScreen = document.querySelector(`#game-3`);
 // const statsScreen = document.querySelector(`#stats`);
 // const main = document.querySelector(`#main`);
-// const mainScreen = document.querySelector(`.central`);
+const mainScreen = document.querySelector(`.central`);
 
 // const screens = [greetingScreen, rulesScreen, firstGameScreen, secondGameScreen, thirdGameScreen, statsScreen];
 
@@ -21,9 +24,7 @@
 //   });
 // };
 
-
-
-showScreen(greetingScreen, main);
+showScreen(intro);
 
 // let i = 1;
 
@@ -52,3 +53,5 @@ showScreen(greetingScreen, main);
 //     }
 //   }
 // });
+
+export {mainScreen};

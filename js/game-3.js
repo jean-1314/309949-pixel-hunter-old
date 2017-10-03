@@ -1,5 +1,7 @@
+import getElementFromTemplate from './get-element.js';
+
 const gameThree = getElementFromTemplate(
-  `
+    `
   <header class="header">
     <div class="header__back">
       <button class="back">
