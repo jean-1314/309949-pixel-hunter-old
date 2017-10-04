@@ -30,13 +30,9 @@ const greetings = getElementFromTemplate(
   `
 );
 
-window.onload = () => {
-  const next = document.querySelector(`.greeting__continue`);
-  if (next) {
-    next.addEventListener(`click`, function () {
-      showScreen(rules);
-    });
-  }
-};
+const nextBtn = greetings.querySelector(`.greeting__continue`);
+if (nextBtn) {
+  nextBtn.addEventListener(`click`, () => showScreen(rules));
+}
 
 export default greetings;

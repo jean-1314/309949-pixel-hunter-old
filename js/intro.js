@@ -21,13 +21,10 @@ const intro = getElementFromTemplate(
   `
 );
 
-window.onload = () => {
-  const introAsterisk = document.querySelector(`.intro__asterisk`);
-  if (introAsterisk) {
-    introAsterisk.addEventListener(`click`, function () {
-      showScreen(greetings);
-    });
-  }
-};
+const introAsteriskBtn = intro.querySelector(`.intro__asterisk`);
+
+if (introAsteriskBtn) {
+  introAsteriskBtn.addEventListener(`click`, () => showScreen(greetings));
+}
 
 export default intro;

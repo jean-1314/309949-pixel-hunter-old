@@ -1,7 +1,9 @@
-const getElementFromTemplate = (string) => {
-  let newDiv = document.createElement(`div`);
-  newDiv.innerHTML = string;
-  return newDiv;
+const getElementFromTemplate = (content) => {
+  let innerContent = document.createRange().createContextualFragment(content);
+  let node = document.createElement(`section`);
+  node.appendChild(innerContent);
+  let clone = node.cloneNode(true);
+  return clone;
 };
 
 export {getElementFromTemplate};

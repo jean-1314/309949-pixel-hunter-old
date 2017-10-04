@@ -1,4 +1,6 @@
 import {getElementFromTemplate} from './get-element.js';
+import {showScreen} from './show-screen.js';
+import greetings from './greetings.js';
 
 const stats = getElementFromTemplate(
     `
@@ -122,5 +124,8 @@ const stats = getElementFromTemplate(
   </footer>
   `
 );
+
+const backBtn = stats.querySelector(`.back`);
+backBtn.addEventListener(`click`, () => showScreen(greetings));
 
 export default stats;

@@ -1,7 +1,9 @@
 import {mainScreen} from './main.js';
 
 const showScreen = (newScreen) => {
-  mainScreen.innerHTML = ``;
+  while (mainScreen.firstChild) {
+    mainScreen.removeChild(mainScreen.firstChild);
+  }
   mainScreen.appendChild(newScreen);
 };
 

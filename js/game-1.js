@@ -1,4 +1,7 @@
 import {getElementFromTemplate} from './get-element.js';
+import {showScreen} from './show-screen.js';
+import gameTwo from './game-2.js';
+import greetings from './greetings.js';
 
 const gameOne = getElementFromTemplate(
     `
@@ -69,5 +72,24 @@ const gameOne = getElementFromTemplate(
   </footer>
   `
 );
+
+const backBtn = gameOne.querySelector(`.back`);
+const questionArray = Array.from(gameOne.querySelectorAll(`[name*='question']`));
+const questionOneArray = Array.from(gameOne.querySelectorAll(`[name='question1']`));
+const questionTwoArray = Array.from(gameOne.querySelectorAll(`[name='question2']`));
+
+const checked = (elem) => {
+  return elem.checked;
+};
+
+if (gameOne) {
+  questionArray.forEach().addEventListener(`input`, () => {
+    if (questionOneArray.some(checked) && questionTwoArray.some(checked)) {
+      showScreen(gameTwo);
+    }
+  });
+}
+
+backBtn.addEventListener(`click`, () => showScreen(greetings));
 
 export default gameOne;

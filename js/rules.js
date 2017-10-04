@@ -1,4 +1,7 @@
 import {getElementFromTemplate} from './get-element.js';
+import {showScreen} from './show-screen.js';
+import gameOne from './game-1.js';
+import greetings from './greetings.js';
 
 const rules = getElementFromTemplate(
     `
@@ -38,5 +41,22 @@ const rules = getElementFromTemplate(
   </footer>
   `
 );
+
+const rulesInput = rules.querySelector(`.rules__input`);
+const rulesBtn = rules.querySelector(`.rules__button`);
+const backBtn = rules.querySelector(`.back`);
+
+if (rulesInput && rulesBtn) {
+  rulesInput.addEventListener(`input`, () => {
+    if (rulesInput.value !== ``) {
+      rulesBtn.disabled = false;
+    } else {
+      rulesBtn.disabled = true;
+    }
+  });
+
+  rulesBtn.addEventListener(`click`, () => showScreen(gameOne));
+  backBtn.addEventListener(`click`, () => showScreen(greetings));
+}
 
 export default rules;

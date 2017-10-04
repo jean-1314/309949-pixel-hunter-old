@@ -1,4 +1,7 @@
 import {getElementFromTemplate} from './get-element.js';
+import {showScreen} from './show-screen.js';
+import gameThree from './game-3.js';
+import greetings from './greetings.js';
 
 const gameTwo = getElementFromTemplate(
     `
@@ -58,5 +61,8 @@ const gameTwo = getElementFromTemplate(
   </footer>
   `
 );
+
+const backBtn = gameTwo.querySelector(`.back`);
+backBtn.addEventListener(`click`, () => showScreen(greetings));
 
 export default gameTwo;
