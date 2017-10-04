@@ -61,6 +61,16 @@ const gameThree = getElementFromTemplate(
 );
 
 const backBtn = gameThree.querySelector(`.back`);
+const optionsArray = Array.from(gameThree.querySelectorAll(`.game__option`));
+
+if (gameThree) {
+  optionsArray.forEach(function (element) {
+    element.addEventListener(`click`, () => {
+      showScreen(stats);
+    });
+  })
+}
+
 backBtn.addEventListener(`click`, () => showScreen(greetings));
 
 export default gameThree;

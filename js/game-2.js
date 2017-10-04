@@ -63,6 +63,16 @@ const gameTwo = getElementFromTemplate(
 );
 
 const backBtn = gameTwo.querySelector(`.back`);
+const questionArray = Array.from(gameTwo.querySelectorAll(`[name*='question']`));
+
+if (gameTwo) {
+  questionArray.forEach(function (element) {
+    element.addEventListener(`change`, () => {
+      showScreen(gameThree);
+    });
+  })
+}
+
 backBtn.addEventListener(`click`, () => showScreen(greetings));
 
 export default gameTwo;

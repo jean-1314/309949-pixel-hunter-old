@@ -83,11 +83,13 @@ const checked = (elem) => {
 };
 
 if (gameOne) {
-  questionArray.forEach().addEventListener(`input`, () => {
-    if (questionOneArray.some(checked) && questionTwoArray.some(checked)) {
-      showScreen(gameTwo);
-    }
-  });
+  questionArray.forEach(function (element) {
+    element.addEventListener(`change`, () => {
+      if (questionOneArray.some(checked) && questionTwoArray.some(checked)) {
+        showScreen(gameTwo);
+      }
+    });
+  })
 }
 
 backBtn.addEventListener(`click`, () => showScreen(greetings));
