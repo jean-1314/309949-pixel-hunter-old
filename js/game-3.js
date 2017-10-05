@@ -68,7 +68,7 @@ if (gameThree) {
     element.addEventListener(`click`, () => {
       showScreen(stats);
     });
-  })
+  });
 }
 
 backBtn.addEventListener(`click`, () => showScreen(greetings));

@@ -70,7 +70,7 @@ if (gameTwo) {
     element.addEventListener(`change`, () => {
       showScreen(gameThree);
     });
-  })
+  });
 }
 
 backBtn.addEventListener(`click`, () => showScreen(greetings));

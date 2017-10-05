@@ -16,12 +16,8 @@
     "del": "2.2.2",
     "eslint": "^4.2.0",
     "eslint-config-htmlacademy": "0.3.x",
-<<<<<<< HEAD
-    "gulp": "^3.9.1",
-=======
     "gulp": "3.9.1",
     "gulp-better-rollup": "1.1.1",
->>>>>>> c7f4bc59e97929d3d15496b8209a4b5a11628625
     "gulp-csso": "3.0.0",
     "gulp-imagemin": "3.2.0",
     "gulp-plumber": "1.1.0",
