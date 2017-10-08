@@ -14,6 +14,8 @@ const imagemin = require('gulp-imagemin');
 const rollup = require('gulp-better-rollup');
 const sourcemaps = require('gulp-sourcemaps');
 
+const mocha = require('gulp-mocha');
+
 gulp.task('style', function () {
   return gulp.src('sass/style.scss')
     .pipe(plumber())
@@ -47,6 +49,12 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('test', function () {
+  return gulp
+    .src(['js/**/*.test.js'], { read: false })
+    .pipe(mocha({
+      compilers: ['js:babel-register'],
+      reporter: 'spec'
+    }));
 });
 
 gulp.task('imagemin', ['copy'], function () {
