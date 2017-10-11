@@ -8,7 +8,7 @@
       "transform-es2015-modules-commonjs"
     ]
   },
-    "scripts": {
+  "scripts": {
     "eslint": "eslint js/",
     "build": "gulp build",
     "start": "gulp serve",
