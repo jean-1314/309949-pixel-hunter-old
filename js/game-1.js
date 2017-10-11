@@ -89,7 +89,7 @@ if (gameOne) {
         showScreen(gameTwo);
       }
     });
-  })
+  });
 }
 
 backBtn.addEventListener(`click`, () => showScreen(greetings));

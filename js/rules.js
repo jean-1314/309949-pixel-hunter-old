@@ -48,11 +48,7 @@ const backBtn = rules.querySelector(`.back`);
 
 if (rulesInput && rulesBtn) {
   rulesInput.addEventListener(`input`, () => {
-    if (rulesInput.value !== ``) {
-      rulesBtn.disabled = false;
-    } else {
-      rulesBtn.disabled = true;
-    }
+    rulesInput.value !== `` ? rulesBtn.disabled = false : rulesBtn.disabled = true;
   });
 
   rulesBtn.addEventListener(`click`, () => showScreen(gameOne));
