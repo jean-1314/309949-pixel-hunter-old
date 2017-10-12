@@ -1,66 +1,67 @@
 let playerAnswers = [
   {
     answer: `correct`,
-    time: `normal`
+    time: 4900
   },
   {
     answer: `incorrect`,
-    time: `fast`
+    time: 2700
   },
   {
     answer: `correct`,
-    time: `normal`
+    time: 9200
   },
   {
     answer: `incorrect`,
-    time: `fast`
+    time: 3500
   },
   {
     answer: `correct`,
-    time: `slow`
+    time: 10800
   },
   {
     answer: `correct`,
-    time: `fast`
+    time: 2200
   },
   {
     answer: `incorrect`,
-    time: `normal`
+    time: 3500
   },
   {
     answer: `correct`,
-    time: `fast`
+    time: 1800
   },
   {
     answer: `correct`,
-    time: `normal`
+    time: 6800
   },
   {
     answer: `incorrect`,
-    time: `fast`
+    time: 1100
   }
 ];
 let playerLives = 3;
-
+let score = 0;
 const countScore = (answers, lives) => {
-  let score = 0;
+
   for (const index in answers) {
     if (answers.hasOwnProperty(index)) {
       let value = answers[index];
-      switch (value) {
-        case `correct`:
-          score = score + 100;
-          break;
-        case `fast`:
-          score = score + 50;
-          break;
-        case `slow`:
-          score = score - 50;
-          break;
+
+      if (value.answer === `correct`) {
+        score = score + 100;
+      }
+
+      if (value.time < 3000) {
+        score = score + 50;
+      }
+
+      if (value.time > 10000) {
+        score = score - 50;
       }
     }
   }
-  score = lives * 50;
+  score = score + (lives * 50);
   return score;
 };
 
