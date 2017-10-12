@@ -65,4 +65,6 @@ const countScore = (answers, lives) => {
   return score;
 };
 
-countScore(playerAnswers, playerLives);
+// countScore(playerAnswers, playerLives);
+
+export {playerAnswers, playerLives, score};
