@@ -8,4 +8,3 @@ suite(`Calculate Score Function Test`, () => {
   });
 });
 
-mocha.run();
