@@ -53,7 +53,8 @@ gulp.task('test', function () {
     .src(['js/**/*.test.js'], { read: false })
     .pipe(mocha({
       compilers: ['js:babel-register'],
-      reporter: 'spec'
+      reporter: 'spec',
+      ui: 'tdd'
     }));
 });
 
