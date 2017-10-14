@@ -3,27 +3,21 @@ const informTimeout = () => {
   console.log(`Время вышло`);
 };
 
-const timer = (seconds) => {
-
-  if (typeof seconds !== `number` || seconds <= 0) {
-    return false;
+class Timer {
+  constructor(firePeriod, timeoutCallback = null) {
+    this.__periodRemaining = firePeriod;
+    this.__timeoutCallback = timeoutCallback;
   }
 
-  let tick = () => {
-    seconds--;
-    if (seconds > 0) {
-      setTimeout(tick, 1000);
-    } else {
-      informTimeout();
+  tick() {
+    if (--this.__periodRemaining <= 0) {
+      this.__timeoutCallback();
+      return false;
     }
-  };
-  tick();
+    return true;
+  }
+}
 
-  return {
-
-  };
-};
-
-timer(5);
+const timer = new Timer(30, informTimeout);
 
 export {informTimeout, timer};
