@@ -1,10 +1,9 @@
 import {getElementFromTemplate} from './get-element.js';
 import {showScreen} from './show-screen.js';
-import rules from './rules.js';
-import footer from './footer.js';
+import renderFooter from './footer.js';
+import renderRules from "./rules";
 
-const greetings = getElementFromTemplate(
-    `
+const greetingsTemplate = `
   <div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
     <h1 class="greeting__asterisk">*</h1>
@@ -18,13 +17,25 @@ const greetings = getElementFromTemplate(
     </div>
     <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
   </div>
-  ${footer}
-  `
-);
+  `;
 
-const nextBtn = greetings.querySelector(`.greeting__continue`);
-if (nextBtn) {
-  nextBtn.addEventListener(`click`, () => showScreen(rules));
-}
+const prepareGreetingsScreen = () => {
+  const greetings = getElementFromTemplate(greetingsTemplate);
+  greetings.appendChild(renderFooter());
+  return greetings;
+};
 
-export default greetings;
+const greetingsPrepared = prepareGreetingsScreen();
+
+const renderGreetings = () => {
+  const greetingsClone = greetingsPrepared.cloneNode(true);
+  const nextBtn = greetingsClone.querySelector(`.greeting__continue`);
+
+  if (nextBtn) {
+    nextBtn.addEventListener(`click`, () => showScreen(renderRules()));
+  }
+
+  return greetingsClone;
+};
+
+export default renderGreetings;

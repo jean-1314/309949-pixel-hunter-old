@@ -1,6 +1,6 @@
 import {getElementFromTemplate} from './get-element.js';
 import {showScreen} from './show-screen.js';
-import greetings from './greetings.js';
+import renderGreetings from "./greetings";
 
 const stats = getElementFromTemplate(
     `
@@ -126,6 +126,6 @@ const stats = getElementFromTemplate(
 );
 
 const backBtn = stats.querySelector(`.back`);
-backBtn.addEventListener(`click`, () => showScreen(greetings));
+backBtn.addEventListener(`click`, () => showScreen(renderGreetings()));
 
 export default stats;

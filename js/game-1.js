@@ -1,24 +1,11 @@
 import {getElementFromTemplate} from './get-element.js';
 import {showScreen} from './show-screen.js';
 import gameTwo from './game-2.js';
-import greetings from './greetings.js';
+import renderGreetings from './greetings.js';
+import {renderHeader, headerData} from "./header";
+import renderFooter from "./footer";
 
-const gameOne = getElementFromTemplate(
-    `
-  <header class="header">
-    <div class="header__back">
-      <button class="back">
-        <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-        <img src="img/logo_small.svg" width="101" height="44">
-      </button>
-    </div>
-    <h1 class="game__timer">NN</h1>
-    <div class="game__lives">
-      <img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">
-      <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
-      <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
-    </div>
-  </header>
+const gameOneTemplate = `
   <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     <form class="game__content">
@@ -60,38 +47,40 @@ const gameOne = getElementFromTemplate(
       </ul>
     </div>
   </div>
-  <footer class="footer">
-    <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
-    <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2016</span>
-    <div class="footer__social-links">
-      <a href="https://twitter.com/htmlacademy_ru" class="social-link  social-link--tw">Твиттер</a>
-      <a href="https://www.instagram.com/htmlacademy/" class="social-link  social-link--ins">Инстаграм</a>
-      <a href="https://www.facebook.com/htmlacademy" class="social-link  social-link--fb">Фэйсбук</a>
-      <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
-    </div>
-  </footer>
-  `
-);
+  `;
 
-const backBtn = gameOne.querySelector(`.back`);
-const questionArray = Array.from(gameOne.querySelectorAll(`[name*='question']`));
-const questionOneArray = Array.from(gameOne.querySelectorAll(`[name='question1']`));
-const questionTwoArray = Array.from(gameOne.querySelectorAll(`[name='question2']`));
-
-const checked = (elem) => {
-  return elem.checked;
+const prepareGameOneScreen = () => {
+  const gameOne = getElementFromTemplate(gameOneTemplate);
+  gameOne.prepend(renderHeader());
+  const header = gameOne.querySelector(`header`);
+  header.appendChild(headerData);
+  gameOne.appendChild(renderFooter());
+  return gameOne;
 };
 
-if (gameOne) {
-  questionArray.forEach(function (element) {
-    element.addEventListener(`change`, () => {
-      if (questionOneArray.some(checked) && questionTwoArray.some(checked)) {
-        showScreen(gameTwo);
-      }
+const gameOnePrepared = prepareGameOneScreen();
+
+const renderGameOne = () => {
+  const gameOneClone = gameOnePrepared.cloneNode(true);
+  const backBtn = gameOneClone.querySelector(`.back`);
+  const questionArray = Array.from(gameOneClone.querySelectorAll(`[name*='question']`));
+  const questionOneArray = Array.from(gameOneClone.querySelectorAll(`[name='question1']`));
+  const questionTwoArray = Array.from(gameOneClone.querySelectorAll(`[name='question2']`));
+  const checked = (elem) => {
+    return elem.checked;
+  };
+
+  if (gameOneClone) {
+    questionArray.forEach(function (element) {
+      element.addEventListener(`change`, () => {
+        if (questionOneArray.some(checked) && questionTwoArray.some(checked)) {
+          showScreen(gameTwo);
+        }
+      });
     });
-  });
-}
+  }
 
-backBtn.addEventListener(`click`, () => showScreen(greetings));
-
-export default gameOne;
+  backBtn.addEventListener(`click`, () => showScreen(renderGreetings()));
+  return gameOneClone;
+};
+export default renderGameOne;

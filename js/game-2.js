@@ -1,7 +1,7 @@
 import {getElementFromTemplate} from './get-element.js';
 import {showScreen} from './show-screen.js';
 import gameThree from './game-3.js';
-import greetings from './greetings.js';
+import renderGreetings from './greetings.js';
 
 const gameTwo = getElementFromTemplate(
     `
@@ -73,6 +73,6 @@ if (gameTwo) {
   });
 }
 
-backBtn.addEventListener(`click`, () => showScreen(greetings));
+backBtn.addEventListener(`click`, () => showScreen(renderGreetings()));
 
 export default gameTwo;

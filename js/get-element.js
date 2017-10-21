@@ -1,9 +1,7 @@
 const getElementFromTemplate = (content) => {
-  let innerContent = document.createRange().createContextualFragment(content);
-  let node = document.createDocumentFragment();
-  node.appendChild(innerContent);
-  let clone = node.cloneNode(true);
-  return clone;
+  const range = document.createRange();
+  range.selectNode(document.body);
+  return range.createContextualFragment(content);
 };
 
 export {getElementFromTemplate};

@@ -1,7 +1,7 @@
 import {showScreen} from './show-screen.js';
-import intro from './intro.js';
+import renderIntro from "./intro";
 
 const mainScreen = document.querySelector(`.central`);
-showScreen(intro);
+showScreen(renderIntro());
 
 export {mainScreen};
