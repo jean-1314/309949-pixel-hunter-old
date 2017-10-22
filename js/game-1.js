@@ -1,7 +1,8 @@
 import {getElementFromTemplate} from './get-element.js';
 import {showScreen} from './show-screen.js';
-import gameTwo from './game-2.js';
+import renderGameTwo from './game-2.js';
 import renderGreetings from './greetings.js';
+import renderStats from './stats';
 import {renderHeader, headerData} from "./header";
 import renderFooter from "./footer";
 
@@ -32,20 +33,6 @@ const gameOneTemplate = `
         </label>
       </div>
     </form>
-    <div class="stats">
-      <ul class="stats">
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--correct"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-      </ul>
-    </div>
   </div>
   `;
 
@@ -54,6 +41,7 @@ const prepareGameOneScreen = () => {
   gameOne.prepend(renderHeader());
   const header = gameOne.querySelector(`header`);
   header.appendChild(headerData);
+  gameOne.appendChild(renderStats());
   gameOne.appendChild(renderFooter());
   return gameOne;
 };
@@ -74,7 +62,7 @@ const renderGameOne = () => {
     questionArray.forEach(function (element) {
       element.addEventListener(`change`, () => {
         if (questionOneArray.some(checked) && questionTwoArray.some(checked)) {
-          showScreen(gameTwo);
+          showScreen(renderGameTwo());
         }
       });
     });

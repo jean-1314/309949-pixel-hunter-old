@@ -9,7 +9,6 @@ const header = getElementFromTemplate(`
         <img src="img/logo_small.svg" width="101" height="44">
       </button>
     </div>
-    
   </header>
 `);
 
