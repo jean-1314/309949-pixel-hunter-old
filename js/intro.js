@@ -1,7 +1,6 @@
 import {getElementFromTemplate} from './get-element.js';
-import {showScreen} from './show-screen.js';
 import renderFooter from './footer.js';
-import renderGreetings from "./greetings";
+import {gameInstance} from './game-core.js';
 
 const introTemplate = `
   <div id="intro" class="intro">
@@ -23,7 +22,7 @@ const renderIntro = () => {
   const introAsteriskBtn = introClone.querySelector(`.intro__asterisk`);
 
   if (introAsteriskBtn) {
-    introAsteriskBtn.addEventListener(`click`, () => showScreen(renderGreetings()));
+    introAsteriskBtn.addEventListener(`click`, () => gameInstance.greetings());
   }
 
   return introClone;

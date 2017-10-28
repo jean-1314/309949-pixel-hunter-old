@@ -1,9 +1,7 @@
 import {getElementFromTemplate} from './get-element.js';
-import {showScreen} from './show-screen.js';
-import renderGameOne from './game-1.js';
-import renderGreetings from "./greetings";
 import {renderHeader} from "./header";
 import renderFooter from "./footer";
+import {gameInstance} from "./game-core";
 
 const rulesTemplate = `
   <div class="rules">
@@ -39,14 +37,12 @@ const renderRules = () => {
   const rulesBtn = rulesClone.querySelector(`.rules__button`);
   const backBtn = rulesClone.querySelector(`.back`);
 
-  if (rulesInput && rulesBtn) {
-    rulesInput.addEventListener(`input`, () => {
-      rulesBtn.disabled = rulesInput.value === ``;
-    });
+  rulesInput.addEventListener(`input`, () => {
+    rulesBtn.disabled = rulesInput.value === ``;
+  });
 
-    rulesBtn.addEventListener(`click`, () => showScreen(renderGameOne())); // TODO gameOne render method call
-    backBtn.addEventListener(`click`, () => showScreen(renderGreetings()));
-  }
+  rulesBtn.addEventListener(`click`, () => gameInstance.initGame(rulesInput.value));
+  backBtn.addEventListener(`click`, () => gameInstance.greetings());
 
   return rulesClone;
 };
